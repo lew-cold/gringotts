@@ -58,7 +58,7 @@ defmodule Gringotts.Mixfile do
     [
       {:poison, "~> 3.1.0"},
       {:httpoison, "~> 1.1"},
-      {:xml_builder, "~> 2.1"},
+      {:xml_builder, "~> 0.1.0"},
       {:elixir_xml_to_map, "~> 0.1"},
 
       # money related
