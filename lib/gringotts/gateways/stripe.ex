@@ -322,11 +322,6 @@ defmodule Gringotts.Gateways.Stripe do
     [amount: int_value, currency: currency]
   end
 
-  defp amount_params_for_refund(amount) do
-    {_, int_value, _} = Money.to_integer(amount)
-    [amount: int_value]
-  end
-
   defp source_params(token_or_customer, _) when is_binary(token_or_customer) do
     [head, _] = String.split(token_or_customer, "_")
 
