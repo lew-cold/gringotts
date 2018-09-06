@@ -323,7 +323,7 @@ defmodule Gringotts.Gateways.Stripe do
   end
 
   defp amount_params_for_refund(amount) do
-    {currency, int_value, _} = Money.to_integer(amount)
+    {_, int_value, _} = Money.to_integer(amount)
     [amount: int_value]
   end
 
