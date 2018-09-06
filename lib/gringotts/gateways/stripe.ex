@@ -247,7 +247,7 @@ defmodule Gringotts.Gateways.Stripe do
   """
   @spec refund(Money.t(), String.t(), keyword) :: map
   def refund(amount, id, opts) do
-    params = optional_params(opts) ++ amount_params(amount)
+    params = optional_params(opts) ++ amount_params_for_refund(amount)
     commit(:post, "charges/#{id}/refund", params, opts)
   end
 
@@ -320,6 +320,11 @@ defmodule Gringotts.Gateways.Stripe do
   defp amount_params(amount) do
     {currency, int_value, _} = Money.to_integer(amount)
     [amount: int_value, currency: currency]
+  end
+
+  defp amount_params_for_refund(amount) do
+    {currency, int_value, _} = Money.to_integer(amount)
+    [amount: int_value]
   end
 
   defp source_params(token_or_customer, _) when is_binary(token_or_customer) do
