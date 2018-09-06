@@ -247,7 +247,7 @@ defmodule Gringotts.Gateways.Stripe do
   """
   @spec refund(Money.t(), String.t(), keyword) :: map
   def refund(amount, id, opts) do
-    params = optional_params(opts) ++ amount_params_for_refund(amount)
+    params = optional_params(opts) ++ amount_params(amount)
     commit(:post, "charges/#{id}/refund", params, opts)
   end
 
